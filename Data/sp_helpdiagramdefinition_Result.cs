@@ -10,19 +10,10 @@
 namespace ShopPraktika.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ProductIntakeProduct
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int ProductIntakeId { get; set; }
-        public int Count { get; set; }
-        public decimal PriceUnit { get; set; }
-        public int StatusIntakeId { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual ProductIntake ProductIntake { get; set; }
-        public virtual StatusIntake StatusIntake { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

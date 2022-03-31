@@ -10,19 +10,13 @@
 namespace ShopPraktika.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ProductIntakeProduct
+    public partial class sp_helpdiagrams_Result
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int ProductIntakeId { get; set; }
-        public int Count { get; set; }
-        public decimal PriceUnit { get; set; }
-        public int StatusIntakeId { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual ProductIntake ProductIntake { get; set; }
-        public virtual StatusIntake StatusIntake { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

@@ -40,7 +40,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         
-        <TextBox x:Name="tb_Poisk" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" SelectionChanged="tb_Poisk_SelectionChanged" TextChanged="tb_Poisk_TextChanged"/>
+        <TextBox x:Name="tb_Poisk" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" TextChanged="tb_Poisk_TextChanged"/>
 
         <ListView Name="prod" ItemsSource="{Binding products}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" SelectionChanged="prod_SelectionChanged" Foreground="Black">
             <ListView.View>

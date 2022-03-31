@@ -1,4 +1,4 @@
-﻿using ShopPraktika.Data;
+﻿using ShopPraktika.Data_;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,8 +32,18 @@ namespace ShopPraktika
 
         private void Login_event(object sender, RoutedEventArgs e)
         {
-            Users = new ObservableCollection<User>(bd_connection.connection.User.ToList());
-            var log = Users.Where(a => a.Login.ToString() == txt_login.Text && a.Password.ToString() == txt_password.Password).FirstOrDefault();
+            User log = new User();
+
+            try
+            {
+                Users = new ObservableCollection<User>(bd_connection.connection.User.ToList());
+                log = Users.Where(a => a.Login.ToString() == txt_login.Text && a.Password.ToString() == txt_password.Password).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Ошибка");
+            }
 
             if (log != null)
             {

@@ -7,25 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShopPraktika
+namespace ShopPraktika.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Worker
+    public partial class StatusIntake
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Worker()
+        public StatusIntake()
         {
-            this.Order = new HashSet<Order>();
+            this.ProductIntakeProduct = new HashSet<ProductIntakeProduct>();
         }
     
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public int UserId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<ProductIntakeProduct> ProductIntakeProduct { get; set; }
     }
 }

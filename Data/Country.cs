@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShopPraktika
+namespace ShopPraktika.Data
 {
     using System;
     using System.Collections.Generic;

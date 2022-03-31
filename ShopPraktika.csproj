@@ -64,64 +64,64 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="bd_connection.cs" />
-    <Compile Include="Client.cs">
+    <Compile Include="Data\bd_connection.cs" />
+    <Compile Include="Data\Client.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Country.cs">
+    <Compile Include="Data\Country.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs">
+    <Compile Include="Data\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
+    <Compile Include="Data\Order.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Page_Author.xaml.cs">
+    <Compile Include="Pages\Page_Author.xaml.cs">
       <DependentUpon>Page_Author.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page_Register.xaml.cs">
+    <Compile Include="Pages\Page_Register.xaml.cs">
       <DependentUpon>Page_Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Product.cs">
+    <Compile Include="Data\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProductCountry.cs">
+    <Compile Include="Data\ProductCountry.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProductIntake.cs">
+    <Compile Include="Data\ProductIntake.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProductIntakeProduct.cs">
+    <Compile Include="Data\ProductIntakeProduct.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProductOrder.cs">
+    <Compile Include="Data\ProductOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs">
+    <Compile Include="Data\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="StatusIntake.cs">
+    <Compile Include="Data\StatusIntake.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="StatusOrder.cs">
+    <Compile Include="Data\StatusOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Supplier.cs">
+    <Compile Include="Data\Supplier.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Unit.cs">
+    <Compile Include="Data\Unit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="Data\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Worker.cs">
+    <Compile Include="Data\Worker.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -129,26 +129,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Page_Author.xaml">
+    <Page Include="Pages\Page_Author.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page_Register.xaml">
+    <Page Include="Pages\Page_Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model.Context.cs">
+    <Compile Include="Data\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Designer.cs">
+    <Compile Include="Data\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -170,11 +170,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model.edmx">
+    <EntityDeploy Include="Data\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model.edmx.diagram">
+    <None Include="Data\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -187,12 +187,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model.Context.tt">
+    <Content Include="Data\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Model.tt">
+    <Content Include="Data\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>

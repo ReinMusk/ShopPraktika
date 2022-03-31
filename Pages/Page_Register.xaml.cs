@@ -42,7 +42,8 @@ namespace ShopPraktika
                     User a = new User
                     {
                         Login = txt_login.Text,
-                        Password = txt_password.ToString()
+                        Password = txt_password.ToString(),
+                        RoleId = 3
                     };
                     bd_connection.connection.User.Add(a);
                     bd_connection.connection.SaveChanges();

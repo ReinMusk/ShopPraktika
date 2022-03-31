@@ -37,7 +37,8 @@ namespace ShopPraktika
 
             if (log != null)
             {
-                //сделать window
+                ProductsList window = new ProductsList(log);
+                window.Show();
             }
             else
             {
@@ -54,13 +55,12 @@ namespace ShopPraktika
 
         private void Sign_event(object sender, RoutedEventArgs e)
         {
-
             NavigationService.Navigate(new Page_Register());
         }
 
-        private void rdo_button_Checked(object sender, RoutedEventArgs e)
+        private void chk_button_Checked(object sender, RoutedEventArgs e)
         {
-            //что то с радио баттоном сделать
+            // чекбокс сделать
         }
     }
 }

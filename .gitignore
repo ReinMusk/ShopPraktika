@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 *.edmx
+/Data_
+/Data_/
+Data_/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

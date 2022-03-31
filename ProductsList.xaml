@@ -45,6 +45,11 @@
         <ListView Name="prod" ItemsSource="{Binding products}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" SelectionChanged="prod_SelectionChanged" Foreground="Black">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductCountry.}" Width="150">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="CountrY">Название</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="150">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="NamE">Название</GridViewColumnHeader>
@@ -60,7 +65,7 @@
                             <GridViewColumnHeader Tag="ImagE">Картинка</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=UnitId}" Width="100">
+                    <GridViewColumn DisplayMemberBinding="{Binding Unit.Name}" Width="100">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="UniT">Единица измерения</GridViewColumnHeader>
                         </GridViewColumn.Header>

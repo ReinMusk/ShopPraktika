@@ -64,13 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data_\bd_connection.cs" />
     <Compile Include="Data_\Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data_\Country.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_\bd_connection.cs" />
     <Compile Include="Data_\Gender.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -91,6 +91,12 @@
     </Compile>
     <Compile Include="Data_\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Page_Author.xaml.cs">
+      <DependentUpon>Page_Author.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Page_Register.xaml.cs">
+      <DependentUpon>Page_Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data_\Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -119,9 +125,6 @@
     <Compile Include="Data_\Supplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data_\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data_\Unit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -130,12 +133,6 @@
     </Compile>
     <Compile Include="Data_\Worker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Page_Author.xaml.cs">
-      <DependentUpon>Page_Author.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Page_Register.xaml.cs">
-      <DependentUpon>Page_Register.xaml</DependentUpon>
     </Compile>
     <Page Include="ProductsList.xaml">
       <SubType>Designer</SubType>
@@ -205,8 +202,8 @@
   <ItemGroup>
     <Content Include="Data_\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data_\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

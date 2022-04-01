@@ -11,13 +11,5 @@ namespace ShopPraktika.Resources
     {
         [JsonProperty("login")]
         public string Login { get; set; }
-
-        [JsonProperty("password")]
-        public string Password { get; set; }
-    }
-    public class JsonObject
-    {
-        [JsonProperty("User")]
-        public UserJSON[] User { get; set; }
     }
 }

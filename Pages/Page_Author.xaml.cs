@@ -37,14 +37,28 @@ namespace ShopPraktika
                 (File.ReadAllText(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"));
 
             txt_login.Text = user.Login;
-            txt_password.Password = user.Password;
-
             
         }
 
         private void Login_event(object sender, RoutedEventArgs e)
         {
             User log = new User();
+
+            if (chk_button.IsChecked == true)
+            {
+                var user = new UserJSON
+                {
+                    Login = txt_login.Text,
+                };
+
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter sw = new StreamWriter(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, user);
+                    // {"ExpiryDate":new Date(1230375600000),"Price":0}
+                }
+            }
 
             try
             {
@@ -80,23 +94,6 @@ namespace ShopPraktika
         private void Sign_event(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Page_Register());
-        }
-
-        private void chk_button_Checked(object sender, RoutedEventArgs e)
-        {
-            var user = new UserJSON
-            {
-                Login = txt_login.Text,
-                Password = txt_password.Password
-            };
-
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-                serializer.Serialize(writer, user);
-                // {"ExpiryDate":new Date(1230375600000),"Price":0}
-            }
         }
     }
 }

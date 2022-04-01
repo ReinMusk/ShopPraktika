@@ -32,6 +32,6 @@
             <Button Content="Log in" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Login_event" Margin="10" Padding="10"/>
             <Button Content="Sign in" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Sign_event" Margin="10" Padding="10"/>
         </StackPanel>
-        <CheckBox x:Name="chk_button" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" Height="90" Checked="chk_button_Checked"/>
+        <CheckBox x:Name="chk_button" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" Height="90"/>
     </Grid>
 </Page>

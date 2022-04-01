@@ -15,6 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using ShopPraktika.Resources;
+using Newtonsoft.Json;
+using System.IO;
+
 namespace ShopPraktika
 {
     /// <summary>
@@ -28,6 +32,14 @@ namespace ShopPraktika
         public Page_Author()
         {
             InitializeComponent();
+
+            UserJSON user = JsonConvert.DeserializeObject<UserJSON>
+                (File.ReadAllText(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"));
+
+            txt_login.Text = user.Login;
+            txt_password.Password = user.Password;
+
+            
         }
 
         private void Login_event(object sender, RoutedEventArgs e)
@@ -37,7 +49,8 @@ namespace ShopPraktika
             try
             {
                 Users = new ObservableCollection<User>(bd_connection.connection.User.ToList());
-                log = Users.Where(a => a.Login.ToString() == txt_login.Text && a.Password.ToString() == txt_password.Password).FirstOrDefault();
+                log = Users.Where(a => a.Login.ToString() == txt_login.Text && 
+                                  a.Password.ToString() == txt_password.Password).FirstOrDefault();
             }
             catch (Exception)
             {
@@ -70,7 +83,19 @@ namespace ShopPraktika
 
         private void chk_button_Checked(object sender, RoutedEventArgs e)
         {
-            // чекбокс сделать
+            var user = new UserJSON
+            {
+                Login = txt_login.Text,
+                Password = txt_password.Password
+            };
+
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, user);
+                // {"ExpiryDate":new Date(1230375600000),"Price":0}
+            }
         }
     }
 }

@@ -22,11 +22,13 @@ namespace ShopPraktika
     public partial class ProductsList : Window
     {
         public static ObservableCollection<Product> products { get; set; }
+        public static ObservableCollection<Unit> unit { get; set; }
         public User user;
         public ProductsList(User usr)
         {
             InitializeComponent();
             products = new ObservableCollection<Product>(bd_connection.connection.Product.ToList());
+            unit = new ObservableCollection<Unit>(bd_connection.connection.Unit.ToList());
             var Prod = new Product();
 
             user = usr;
@@ -48,15 +50,14 @@ namespace ShopPraktika
 
         }
 
-
         private void Del_event(object sender, RoutedEventArgs e)
         {
             //тут продукт взять
 
-            if (user.Id != 3)
+            if (user.RoleId != 3)
             {
-                if (MessageBox.Show("If the file save fails, do you want to automatically try again?",
-                    "Save file",
+                if (MessageBox.Show("Действительно хотите удалить?",
+                    "Предупреждение",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
@@ -71,32 +72,20 @@ namespace ShopPraktika
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
-
+            //
         }
 
         private void Unit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var a = (sender as ComboBox).SelectedItem as Unit;
 
-            prod.ItemsSource = products.Select(x => x.Unit.Id == a.Id).ToList();
+            prod.ItemsSource = products.Select(x => x.UnitId == a.Id).ToList();
         }
 
 
-        int count = 0;
         private void btn_Alfabet_Click(object sender, RoutedEventArgs e)
         {
-
-            if (count % 2 == 0)
-            {
-                prod.ItemsSource = products.OrderBy(x => x.Name).ToList();
-                var temp = products.OrderBy(x => x.Name).ToList();
-                temp.Reverse();
-                prod.ItemsSource = temp;
-            }
-            else
-            {
-                prod.ItemsSource = products.OrderBy(x => x.Name).ToList();
-            }
+            prod.ItemsSource = products.OrderBy(x => x.Name).ToList();
         }
 
         private void btn_InMounth_Click(object sender, RoutedEventArgs e)

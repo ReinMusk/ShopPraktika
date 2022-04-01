@@ -23,7 +23,7 @@ namespace ShopPraktika
     public partial class Page_Author : Page
     {
 
-        int count = 0;
+        int count = 1;
         public static ObservableCollection<User> Users { get; set; }
         public Page_Author()
         {
@@ -56,10 +56,11 @@ namespace ShopPraktika
                 ++count;
             }
 
-            if (count % 3 == 0)
+            if (count % 4 == 0)
             {
                 MessageBox.Show("Вы вводили неправильные данные больше 3 раз, блокировка 1 минута", "Блокировка");
                 //заблокать кнопку на минуту
+                count = 1;
             }
         }
 

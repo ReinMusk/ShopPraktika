@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopPraktika"
         mc:Ignorable="d"
-        Title="ProductsList" Height="450" Width="800">
+        Title="ProductsList" Height="550" Width="1000">
 
 
     <Grid>
@@ -30,7 +30,7 @@
         <Button x:Name="btn_Alfabet" Content="По алфавиту" Grid.Column="1" Grid.Row="0" Click="btn_Alfabet_Click"/>
         <Button x:Name="btn_InMounth" Content="Добавление в этом месяце" Grid.Column="2" Grid.Row="0" Click="btn_InMounth_Click"/>
         
-        <ComboBox Grid.Column="3" Grid.Row="0" x:Name="Unit_comb" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectionChanged="Unit_SelectionChanged" ItemsSource="{Binding Unit}">
+        <ComboBox Grid.Column="3" Grid.Row="0" x:Name="Unit_comb" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectionChanged="Unit_SelectionChanged" ItemsSource="{Binding unit}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -45,9 +45,9 @@
         <ListView Name="prod" ItemsSource="{Binding products}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" SelectionChanged="prod_SelectionChanged" Foreground="Black">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding ProductCountry.}" Width="150">
+                    <GridViewColumn DisplayMemberBinding="{Binding ProductCountry}" Width="150">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="CountrY">Название</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="CountrY">Страны</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="150">

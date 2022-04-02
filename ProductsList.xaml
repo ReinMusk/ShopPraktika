@@ -42,39 +42,29 @@
         
         <TextBox x:Name="tb_Poisk" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" TextChanged="tb_Poisk_TextChanged"/>
 
-        <ListView Name="prod" ItemsSource="{Binding products}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="6" SelectionChanged="prod_SelectionChanged" Foreground="Black">
+        <ListView x:Name="prod" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="7">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding ProductCountry}" Width="150">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="CountrY">Страны</GridViewColumnHeader>
-                        </GridViewColumn.Header>
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Наименование"  DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Описание"  DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Дата добавления" DisplayMemberBinding="{Binding AddDate}"/>
+                    <GridViewColumn Header="Ед.измерения" DisplayMemberBinding="{Binding Unit.Name}"/>
+
+                    <GridViewColumn Header="Страна">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListView ItemsSource="{Binding ProductCountry}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Height="35" Width="250" Content="{Binding Country.Name}" Background="{Binding Country.Color}"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="150">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="NamE">Название</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="230">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="OpiS">Описание</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="230">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="ImagE">Картинка</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Unit.Name}" Width="100">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="UniT">Единица измерения</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=AddDate}" Width="100">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="DatA">Дата добавления</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>

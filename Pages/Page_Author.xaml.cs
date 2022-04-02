@@ -34,7 +34,7 @@ namespace ShopPraktika
             InitializeComponent();
 
             UserJSON user = JsonConvert.DeserializeObject<UserJSON>
-                (File.ReadAllText(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"));
+                (File.ReadAllText(@"C:\Users\danil\source\repos\ShopPraktika\Resources\json.txt"));
 
             txt_login.Text = user.Login;
             
@@ -52,7 +52,7 @@ namespace ShopPraktika
                 };
 
                 JsonSerializer serializer = new JsonSerializer();
-                using (StreamWriter sw = new StreamWriter(@"C:\Users\h4iru\Source\Repos\ShopPraktika2\Resources\json.txt"))
+                using (StreamWriter sw = new StreamWriter(@"C:\Users\danil\source\repos\ShopPraktika\Resources\json.txt"))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
                     serializer.Serialize(writer, user);

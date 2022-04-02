@@ -72,14 +72,16 @@ namespace ShopPraktika
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
-            //
+            prod.ItemsSource = products.OrderBy(x => x.Id).ToList();
+
+            Unit_comb.Items.Refresh();
         }
 
         private void Unit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var a = (sender as ComboBox).SelectedItem as Unit;
 
-            prod.ItemsSource = products.Select(x => x.UnitId == a.Id).ToList();
+            prod.ItemsSource = products.Where(x => x.UnitId == a.Id).ToList();
         }
 
 
@@ -90,7 +92,7 @@ namespace ShopPraktika
 
         private void btn_InMounth_Click(object sender, RoutedEventArgs e)
         {
-            prod.ItemsSource = products.Select(x => x.AddDate.Month == DateTime.Now.Month).ToList();
+            prod.ItemsSource = products.Where(x => x.AddDate.Month == DateTime.Now.Month).ToList();
         }
     }
 }

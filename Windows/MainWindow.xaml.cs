@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using ShopPraktika.Data_;
+
 namespace ShopPraktika
 {
     /// <summary>
@@ -20,6 +22,8 @@ namespace ShopPraktika
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ShopEntities1 db = new ShopEntities1();
+        public static User AuthUser;
         public MainWindow()
         {
             InitializeComponent();

@@ -59,12 +59,10 @@ namespace ShopPraktika
             switch (MainWindow.AuthUser.RoleId)
             {
                 case 1:
-                    ProductsList window = new ProductsList(MainWindow.AuthUser);
-                    window.Show();
+                    NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
                     break;
                 case 3:
-                    ProductsList window1 = new ProductsList(MainWindow.AuthUser);
-                    window1.Show();
+                    NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
                     break;
             }
         }

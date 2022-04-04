@@ -20,7 +20,7 @@ namespace ShopPraktika
     /// <summary>
     /// Interaction logic for ProductsList.xaml
     /// </summary>
-    public partial class ProductsList : Window
+    public partial class ProductsList : Page
     {
         public static ObservableCollection<Product> products { get; set; }
         public static ObservableCollection<Unit> unit { get; set; }
@@ -33,6 +33,8 @@ namespace ShopPraktika
             var Prod = new Product();
 
             user = usr;
+
+            unit.Add(new Unit { Name = "Все" });
 
             this.DataContext = this;
         }
@@ -64,7 +66,12 @@ namespace ShopPraktika
         {
             var a = (sender as ComboBox).SelectedItem as Unit;
 
-            prod.ItemsSource = products.Where(x => x.UnitId == a.Id).ToList();
+            if (a.Name == "Все")
+            {
+                prod.ItemsSource = products.OrderBy(x => x.UnitId).ToList();
+            }
+            else
+                prod.ItemsSource = products.Where(x => x.UnitId == a.Id).ToList();
         }
 
 

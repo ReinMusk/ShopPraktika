@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopPraktika"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
+        Title="MainWindow" Height="550" Width="800"
+        Background="#FFCFC2">
     <Grid>
-        <Frame x:Name="Log_frame" NavigationUIVisibility="Hidden"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Frame Background="#FAB7A4"/>
+        <Frame Grid.Row="1" x:Name="Log_frame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

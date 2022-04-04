@@ -15,23 +15,143 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Authorization" FontSize="36" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Text="Login" FontSize="36" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBlock Text="Password" FontSize="36" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
-        <TextBlock Text="Remember me" FontSize="30" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Authorization" 
+                   FontSize="36" 
+                   Foreground="#AD7261" 
+                   Grid.Column="0" 
+                   Grid.Row="0" 
+                   Grid.ColumnSpan="2" 
+                   TextAlignment="Center" 
+                   VerticalAlignment="Center"/>
+        
+        <TextBlock Text="Login" 
+                   FontSize="36" 
+                   Foreground="#AD7261" 
+                   Grid.Column="0" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 25, 0"/>
+        
+        <TextBlock Text="Password" 
+                   FontSize="36" 
+                   Foreground="#AD7261"
+                   Grid.Column="0" 
+                   Grid.Row="2" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 25, 0"/>
+        
+        <TextBlock Text="Remember me" 
+                   FontSize="30" 
+                   Foreground="#AD7261"
+                   Grid.Column="0" 
+                   Grid.Row="3" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Right"
+                   Margin="0, 10, 25, 0"/>
+        
+        <Border Grid.Row="1" 
+                Grid.Column="1"
+                CornerRadius="30" 
+                BorderBrush="#AD7261" 
+                BorderThickness="3"
+                VerticalAlignment="Center" 
+                UseLayoutRounding="True"
+                Margin="10, 0, 30, 0"
+                Height="55">
+            
+            <TextBox x:Name="txt_login" 
+                 FontSize="30" 
+                 VerticalContentAlignment="Center"
+                 BorderThickness="0" 
+                 Background="Transparent"
+                 Margin="15, 0, 15, 0"
+                 Foreground="#AD7261"/>
+        </Border>
 
-        <TextBox x:Name="txt_login" Grid.Row="1" Grid.Column="1" FontSize="30" VerticalContentAlignment="Center"/>
-        <PasswordBox x:Name="txt_password" Grid.Row="2" Grid.Column="1" FontSize="30" VerticalContentAlignment="Center"/>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <Button Content="Log in" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Login_event" Margin="10" Padding="10"/>
-            <Button Content="Sign in" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Sign_event" Margin="10" Padding="10"/>
+        <Border Grid.Row="2" 
+                Grid.Column="1"
+                CornerRadius="30" 
+                BorderBrush="#AD7261" 
+                BorderThickness="3"
+                VerticalAlignment="Center" 
+                UseLayoutRounding="True"
+                Margin="10, 0, 30, 0"
+                Height="55">
+            
+            <PasswordBox x:Name="txt_password" 
+                     Grid.Row="2" 
+                     Grid.Column="1" 
+                     FontSize="30" 
+                     VerticalContentAlignment="Center"
+                     Margin="15, 0, 15, 0"
+                     BorderThickness="0" 
+                     Background="Transparent"
+                     Foreground="#AD7261"/>
+        </Border>
+        
+        <StackPanel Grid.Column="0" 
+                    Grid.ColumnSpan="2" 
+                    Grid.Row="5" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Margin="10">
+            
+            <Border CornerRadius="30" 
+                    BorderBrush="#AD7261" 
+                    BorderThickness="3"
+                    VerticalAlignment="Center" 
+                    UseLayoutRounding="True"
+                    Height="55"
+                    Width="110">
+                <Button Content="Log in" 
+                    Grid.Column="0" 
+                    Grid.Row="5" 
+                    Grid.ColumnSpan="2" 
+                    FontSize="20" 
+                    Click="Login_event" 
+                    Margin="10" 
+                    Background="Transparent"
+                    BorderThickness="0"
+                    />
+            </Border>
+
+            <Border CornerRadius="30" 
+                    BorderBrush="#AD7261" 
+                    BorderThickness="3"
+                    VerticalAlignment="Center" 
+                    UseLayoutRounding="True"
+                    Height="55"
+                    Width="100">
+                <Button Content="Sign in" 
+                    Grid.Column="0" 
+                    Grid.Row="5" 
+                    Grid.ColumnSpan="2" 
+                    FontSize="20" 
+                    Click="Sign_event"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    />
+            </Border>
         </StackPanel>
-        <CheckBox x:Name="chk_button" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" Height="90"/>
+
+        <CheckBox x:Name="chk_button" 
+                  Grid.Row="3" 
+                  Grid.Column="1" 
+                  VerticalContentAlignment="Center" 
+                  Height="90"
+                  BorderThickness="2.5"
+                  BorderBrush="#AD7261"
+                  Background="Transparent"
+                  Foreground="#AD7261">
+        </CheckBox>
     </Grid>
 </Page>

@@ -33,16 +33,15 @@ namespace ShopPraktika
         {
             Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[^a-zA-Z0-9])\S{6,16}$");
 
-            MatchCollection matches = regex.Matches(txt_password.ToString());
-
-            if (matches.Count > 1)
+            bool isPass = regex.IsMatch(txt_password.Password);
+            if (isPass)
             {
                 try
                 {
                     User a = new User
                     {
                         Login = txt_login.Text,
-                        Password = txt_password.ToString(),
+                        Password = txt_password.Password,
                         RoleId = 3
                     };
                     bd_connection.connection.User.Add(a);

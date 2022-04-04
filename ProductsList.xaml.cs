@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ShopPraktika
@@ -47,34 +48,16 @@ namespace ShopPraktika
 
         private void prod_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var product = (sender as ListView).SelectedItem as Product;
 
-        }
-
-        private void Del_event(object sender, RoutedEventArgs e)
-        {
-            //тут продукт взять
-
-            if (user.RoleId != 3)
-            {
-                if (MessageBox.Show("Действительно хотите удалить?",
-                    "Предупреждение",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    // удалить bd_connection.connection.Product.Remove
-                }
-            }
-            else
-            {
-                MessageBox.Show("Нет прав", "Ошибка");
-            }
+            NavigationService.Navigate(new EditPage(product));
         }
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
             prod.ItemsSource = products.OrderBy(x => x.Id).ToList();
 
-            Unit_comb.Items.Refresh();
+            Unit_comb.SelectedItem = null;
         }
 
         private void Unit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,5 +77,6 @@ namespace ShopPraktika
         {
             prod.ItemsSource = products.Where(x => x.AddDate.Month == DateTime.Now.Month).ToList();
         }
+
     }
 }

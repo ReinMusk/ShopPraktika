@@ -24,7 +24,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1">
-            <Button Content="Удалить" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Del_event" Margin="1"/>
             <Button Content="Сброс" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Reset_event" Margin="1"/>
         </StackPanel>
         <Button x:Name="btn_Alfabet" Content="По алфавиту" Grid.Column="1" Grid.Row="0" Click="btn_Alfabet_Click"/>
@@ -42,7 +41,7 @@
         
         <TextBox x:Name="tb_Poisk" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" TextChanged="tb_Poisk_TextChanged"/>
 
-        <ListView x:Name="prod" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="7">
+        <ListView x:Name="prod" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="7" SelectionChanged="prod_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>

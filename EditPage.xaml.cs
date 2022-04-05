@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace ShopPraktika
 {
@@ -47,12 +49,30 @@ namespace ShopPraktika
 
         private void Unit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            product.UnitId = (cb_unit.SelectedItem as Unit).Id;
+            product.AddDate = DateTime.Now;
 
+            //AddCountryBtn.Visibility = Visibility.Visible;
+            //DelCountryBtn.Visibility = Visibility.Visible;
         }
 
         private void btn_newphoto_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg"
+            };
+            if (openFile.ShowDialog().GetValueOrDefault())
+            {
+                product.Photo = File.ReadAllBytes(openFile.FileName);
+                ForPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+            }
+        }
 
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            bd_connection.connection.SaveChanges();
+            NavigationService.GoBack();
         }
     }
 }

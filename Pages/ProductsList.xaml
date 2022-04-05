@@ -108,6 +108,15 @@
         <ListView x:Name="prod" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="7" SelectionChanged="prod_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    
+                    <GridViewColumn Header="Фото">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Photo}" Height="70"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
                     <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Наименование"  DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Описание"  DisplayMemberBinding="{Binding Description}"/>

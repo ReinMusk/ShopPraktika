@@ -85,22 +85,6 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ComboBox Grid.Column="1" 
-                  Grid.Row="5" 
-                  x:Name="cb_country" 
-                  FontSize="20" 
-                  VerticalContentAlignment="Center" 
-                  SelectionChanged="Unit_SelectionChanged" 
-                  ItemsSource="{Binding country}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
         <Image x:Name="ForPhoto" 
                Source="{Binding Product.Photo}"
                Grid.Column="2" 

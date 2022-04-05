@@ -71,6 +71,7 @@ namespace ShopPraktika
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
+            bd_connection.connection.Product.FirstOrDefault<Product>();
             bd_connection.connection.SaveChanges();
             NavigationService.GoBack();
         }

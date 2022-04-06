@@ -95,8 +95,8 @@
     <Compile Include="Data_\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EditPage.xaml.cs">
-      <DependentUpon>EditPage.xaml</DependentUpon>
+    <Compile Include="Pages\AddEditPage.xaml.cs">
+      <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page_Author.xaml.cs">
       <DependentUpon>Page_Author.xaml</DependentUpon>
@@ -140,7 +140,7 @@
     <Compile Include="Data_\Worker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Page Include="EditPage.xaml">
+    <Page Include="Pages\AddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

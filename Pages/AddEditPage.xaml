@@ -26,67 +26,66 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <StackPanel Margin="10" Grid.Column="1" Grid.Row="3">
+            <StackPanel Height="213">
+                <ListView Visibility="Hidden" x:Name="CountryLv" ItemsSource="{Binding ProductCountry}" Width="150" Height="150">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Height="30" FontSize="15" Content="{Binding Country.Name}" Background="{Binding Country.Color}"></Label>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ComboBox Visibility="Hidden" Margin="2" Name="CountryCb"></ComboBox>
+                <Button Visibility="Hidden" Margin="2" x:Name="AddCountryBtn" Content="Добавить срану" Click="AddCountryBtn_Click"></Button>
+                <Button Visibility="Hidden" Margin="2" x:Name="DelCountryBtn" Content="Удалить страну"  Click="DelCountryBtn_Click"></Button>
+                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Height="37" >Завершить</Button>
+            </StackPanel>
+        </StackPanel>
+
+
         <Button x:Name="btn_back" 
                 Content="Назад" 
-                Grid.Column="1" 
+                Grid.Column="2" 
                 Grid.Row="7" 
                 Height="30" 
                 Width="100" 
                 VerticalAlignment="Top" 
-                HorizontalAlignment="Left" 
+                HorizontalAlignment="Right" 
                 Click="btn_back_Click"/>
         <Button x:Name="btn_save" 
                 Content="Сохранить" 
-                Grid.Column="1" 
+                Grid.Column="3" 
                 Grid.Row="7" 
                 Height="30" 
                 Width="100" 
                 VerticalAlignment="Top" 
-                HorizontalAlignment="Right"
+                HorizontalAlignment="left"
                 Click="btn_save_Click"/>
 
-        <TextBlock Text="ID" 
-                   Grid.Column="0" 
-                   Grid.Row="1"/>
-        
         <TextBlock Text="Название" 
                    Grid.Column="0" 
-                   Grid.Row="2"/>
+                   Grid.Row="0"/>
         
         <TextBlock Text="Описание" 
                    Grid.Column="0" 
-                   Grid.Row="3"/>
+                   Grid.Row="1"/>
         
         <TextBlock Text="Ед.измерения" 
                    Grid.Column="0" 
-                   Grid.Row="4"/>
+                   Grid.Row="2"/>
         
         <TextBlock Text="Страна" 
+                   x:Name="CountryLabel"
                    Grid.Column="0"
-                   Grid.Row="5"/>
+                   Grid.Row="3"/>
 
-        <!--<TextBox x:Name="{Binding product.Id}" Grid.Column="1" Grid.Row="1" IsReadOnly="True"/>-->
-        <!--<TextBox x:Name="{Binding product.Name}" Grid.Column="1" Grid.Row="2"/>
-        <TextBox x:Name="{Binding product.Description}" Grid.Column="1" Grid.Row="3"/>-->
+        <TextBox Text="{Binding Name}" x:Name="NameTb" Grid.Column="1" Grid.Row="0"/>
+        <TextBox Text="{Binding Description}" x:Name="DescriptionTb" Grid.Column="1" Grid.Row="1"/>
 
-        <ComboBox Grid.Column="1" 
-                  Grid.Row="4" 
-                  x:Name="cb_unit" 
-                  FontSize="20" 
-                  VerticalContentAlignment="Center" 
-                  SelectionChanged="Unit_SelectionChanged" 
-                  ItemsSource="{Binding unit}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Unit}" DisplayMemberPath="Name"  x:Name="UnitCb" Width="200"/>
 
         <Image x:Name="ForPhoto" 
-               Source="{Binding Product.Photo}"
+               Source="{Binding Photo}"
                Grid.Column="2" 
                Grid.ColumnSpan="3" 
                Grid.Row="1" 

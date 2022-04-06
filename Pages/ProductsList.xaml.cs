@@ -22,30 +22,16 @@ namespace ShopPraktika
     /// </summary>
     public partial class ProductsList : Page
     {
-        public static ObservableCollection<Product> products { get; set; }
-        public static ObservableCollection<Unit> unit { get; set; }
-        public User user;
-        public ProductsList(User usr)
+        User usr;
+        public ProductsList(User Newusr)
         {
             InitializeComponent();
-            products = new ObservableCollection<Product>(bd_connection.connection.Product.ToList());
-            unit = new ObservableCollection<Unit>(bd_connection.connection.Unit.ToList());
-            var Prod = new Product();
-
-            user = usr;
-
-            unit.Add(new Unit { Name = "Все" });
-
-            this.DataContext = this;
-        }
-
-        private void tb_Poisk_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (tb_Poisk.Text != "")
-            {
-                prod.SelectedItem = null;
-                prod.ItemsSource = new ObservableCollection<Product>(bd_connection.connection.Product.Where(z => (z.Name.Contains(tb_Poisk.Text) || z.Description.Contains(tb_Poisk.Text))).ToList());
-            }
+            usr = Newusr;
+            prod.ItemsSource = MainWindow.db.Product.ToList();
+            var LvUnit = MainWindow.db.Unit.ToList();
+            LvUnit.Insert(0, new Unit() { Id = -1, Name = "Все" });
+            UnitCb.ItemsSource = LvUnit;
+            UnitCb.DisplayMemberPath = "Name";
         }
 
         private void prod_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,35 +41,88 @@ namespace ShopPraktika
             NavigationService.Navigate(new EditPage(product));
         }
 
-        private void Reset_event(object sender, RoutedEventArgs e)
+        private void Del_event(object sender, RoutedEventArgs e)
         {
-            prod.ItemsSource = products.OrderBy(x => x.Id).ToList();
-
-            Unit_comb.SelectedItem = null;
-        }
-
-        private void Unit_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var a = (sender as ComboBox).SelectedItem as Unit;
-
-            if (a.Name == "Все")
+            var isSelProduct = prod.SelectedItem as Product;
+            if (isSelProduct != null)
             {
-                prod.ItemsSource = products.OrderBy(x => x.UnitId).ToList();
+                if (usr.RoleId == 1)
+                {
+                    var result = MessageBox.Show("Удалить?", "", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        MainWindow.db.Product.Remove(isSelProduct);
+                        MainWindow.db.SaveChanges();
+                    }
+                }
+                else
+                    MessageBox.Show("Вы не админ");
             }
             else
-                prod.ItemsSource = products.Where(x => x.UnitId == a.Id).ToList();
+                MessageBox.Show("Ничего не выбрано!");
         }
 
-
-        private void btn_Alfabet_Click(object sender, RoutedEventArgs e)
+        private void EditBtnt_Click(object sender, RoutedEventArgs e)
         {
-            prod.ItemsSource = products.OrderBy(x => x.Name).ToList();
+            var isSelProduct = prod.SelectedItem as Product;
+            if (isSelProduct != null)
+                NavigationService.Navigate(new EditPage(isSelProduct));
+            else
+                MessageBox.Show("Ничего не выбрано!");
         }
 
-        private void btn_InMounth_Click(object sender, RoutedEventArgs e)
+        private void Refresh()
         {
-            prod.ItemsSource = products.Where(x => x.AddDate.Month == DateTime.Now.Month).ToList();
+            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList();
+
+            if (!string.IsNullOrWhiteSpace(SearchNameDescTb.Text))
+                FilterProduct = FilterProduct.Where(c => c.Name.StartsWith(SearchNameDescTb.Text) || c.Description.StartsWith(SearchNameDescTb.Text));
+
+            if (UnitCb.SelectedIndex > 0)
+                FilterProduct = FilterProduct.Where(c => c.UnitId == (UnitCb.SelectedItem as Unit).Id || c.UnitId == -1);
+
+            if (DateMounthBtn.IsPressed)
+            {
+                var date = DateTime.Now.Month;
+                prod.ItemsSource = FilterProduct.Where(c => c.AddDate.Month == date);
+            }
+
+            if (DateCb.SelectedIndex == 1)
+                FilterProduct = FilterProduct.OrderBy(c => c.AddDate);
+            else
+                FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate);
+
+            if (AlfCb.SelectedIndex == 1)
+                FilterProduct = FilterProduct.OrderBy(c => c.Name);
+            else
+                FilterProduct = FilterProduct.OrderByDescending(c => c.Name);
+
+            prod.ItemsSource = FilterProduct;
         }
 
+        private void UnitCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void SearchNameDescTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void DateMounthBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void DateCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void AlfCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
     }
 }

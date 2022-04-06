@@ -117,7 +117,7 @@ namespace ShopPraktika
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
-            //затычка
+            Refresh();
         }
     }
 }

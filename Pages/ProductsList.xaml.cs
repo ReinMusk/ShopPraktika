@@ -124,5 +124,10 @@ namespace ShopPraktika
         {
             Refresh();
         }
+
+        private void Reset_event(object sender, RoutedEventArgs e)
+        {
+            //затычка
+        }
     }
 }

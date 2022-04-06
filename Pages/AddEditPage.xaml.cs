@@ -107,5 +107,10 @@ namespace ShopPraktika
             bd_connection.connection.SaveChanges();
             NavigationService.GoBack();
         }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

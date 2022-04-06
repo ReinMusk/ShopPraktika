@@ -10,11 +10,12 @@
 
     <Grid>
         <Grid.ColumnDefinitions >
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="102*"/>
+            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,23 +24,19 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" 
-                    Grid.Row="0" 
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center" 
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left" 
                     VerticalAlignment="Center" 
-                    Margin="1">
+                    Grid.ColumnSpan="4"
+                    Width="401" Height="56">
             <Border BorderBrush="#AD7261"
                 Grid.Column="1" 
                 Grid.Row="0"
                 BorderThickness="3"
                 CornerRadius="15"
-                Margin="0, 10, 20, 10"
+                Margin="20, 10"
                 Padding="10, 0, 10, 0">
                 <Button Content="Сброс" 
-                    Grid.Column="0" 
-                    Grid.Row="5" 
-                    Grid.ColumnSpan="2" 
                     FontSize="20" 
                     Click="Reset_event" 
                     Margin="1"/>
@@ -49,22 +46,19 @@
                 Grid.Row="0"
                 BorderThickness="3"
                 CornerRadius="15"
-                Margin="0, 10, 0, 10"
-                Padding="10, 0, 10, 0">
+                Margin="0, 10, 10, 10"
+                Padding="10, 0">
                 <Button Content="Удалить" 
-                    Grid.Column="0" 
-                    Grid.Row="5" 
-                    Grid.ColumnSpan="2" 
                     FontSize="20" 
-                    Click="Del_event" 
-                    Margin="1"/>
+                    Click="Del_event"/>
             </Border>
+
             <Border BorderBrush="#AD7261"
                 Grid.Column="1" 
                 Grid.Row="0"
                 BorderThickness="3"
                 CornerRadius="15"
-                Margin="0, 10, 0, 10"
+                Margin="10, 10, 0, 10"
                 Padding="10, 0, 10, 0">
                 <Button Content="Изменить" 
                     Grid.Column="0" 
@@ -76,29 +70,52 @@
             </Border>
 
         </StackPanel >
-        <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.ColumnSpan="6" Width="600">
-            <TextBox Height="25" Width="150"  x:Name="SearchNameDescTb" TextChanged="SearchNameDescTb_TextChanged"></TextBox>
-            <ComboBox Margin="10 0" Height="25" Width="150" x:Name="UnitCb" SelectionChanged="UnitCb_SelectionChanged"></ComboBox>
-            <ComboBox Text="Dfvvcv" x:Name="DateCb" Width="100" SelectionChanged="DateCb_SelectionChanged">
-                <ComboBoxItem Content="Сбросить"></ComboBoxItem>
-                <ComboBoxItem Content="По возрастанию"></ComboBoxItem>
-                <ComboBoxItem Content="По убыванию"></ComboBoxItem>
+        <StackPanel HorizontalAlignment="Left"  
+                    Orientation="Horizontal" 
+                    Grid.Column="3"
+                    Width="601" 
+                    Grid.ColumnSpan="3" 
+                    Margin="0,1,0,0">
+            <TextBox Height="25"
+                     Width="150"  
+                     x:Name="SearchNameDescTb" 
+                     TextChanged="SearchNameDescTb_TextChanged"/>
+            <ComboBox Margin="10 0" 
+                      Width="50"
+                      Height="30"
+                      x:Name="UnitCb"
+                      SelectionChanged="UnitCb_SelectionChanged"/>
+            <ComboBox Text="Dfvvcv" 
+                      x:Name="DateCb"
+                      Height="30"
+                      Width="150" 
+                      SelectionChanged="DateCb_SelectionChanged">
+                <ComboBoxItem Content="Сбросить"/>
+                <ComboBoxItem Content="По возрастанию"/>
+                <ComboBoxItem Content="По убыванию"/>
             </ComboBox>
-            <ComboBox  Margin="10 0" x:Name="AlfCb" Width="100" SelectionChanged="AlfCb_SelectionChanged">
-                <ComboBoxItem Content="Сбросить"></ComboBoxItem>
-                <ComboBoxItem Content="от А до Я"></ComboBoxItem>
-                <ComboBoxItem Content="от Я до А"></ComboBoxItem>
+            
+            <ComboBox  Margin="10 0" 
+                       x:Name="AlfCb" 
+                       Width="50"
+                       Height="30"
+                       SelectionChanged="AlfCb_SelectionChanged">
+                <ComboBoxItem Content="Сбросить"/>
+                <ComboBoxItem Content="от А до Я"/>
+                <ComboBoxItem Content="от Я до А"/>
             </ComboBox>
-            <Button  x:Name="DateMounthBtn" Click="DateMounthBtn_Click">Дата текущего месяца</Button>
+            <Button  x:Name="DateMounthBtn" 
+                     Click="DateMounthBtn_Click"
+                     Content="Дата текущего месяца"/>
         </StackPanel>
 
 
         <ListView x:Name="prod" 
                   ItemsSource="{Binding products}"
                   Grid.Column="0"
-                  Grid.ColumnSpan="5" 
+                  Grid.ColumnSpan="6" 
                   Grid.Row="1"
-                  Grid.RowSpan="7" 
+                  Grid.RowSpan="3" 
                   SelectionChanged="prod_SelectionChanged">
             <ListView.View>
                 <GridView>

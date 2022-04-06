@@ -28,10 +28,10 @@
 
         <Border Grid.Column="1" 
                 Grid.Row="3"
-                Grid.RowSpan="5"
+                Grid.RowSpan="4"
                 BorderThickness="3"
                 BorderBrush="#AD7261"
-                Margin="0, 10, 0, 10"
+                Margin="0, 0, 0, 10"
                 CornerRadius="20"
                 Padding="5">
 
@@ -103,8 +103,8 @@
                     Height="30" 
                     Width="100"
                     FontSize="15"
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
                     Click="btn_back_Click"/>
         </Border>
         <Border BorderThickness="3"
@@ -117,8 +117,8 @@
                     Content="Сохранить" 
                     Height="30" 
                     Width="100" 
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="left"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
                     FontSize="15"
                     Click="btn_save_Click"/>
         </Border>

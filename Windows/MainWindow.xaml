@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ShopPraktika"
         mc:Ignorable="d"
         Title="Shop Practice" Height="550" Width="800"
-        Background="#FFCFC2">
+        Background="#FFCFC2"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

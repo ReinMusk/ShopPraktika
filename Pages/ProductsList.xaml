@@ -93,7 +93,13 @@
         </StackPanel>
 
 
-        <ListView x:Name="prod" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="7" SelectionChanged="prod_SelectionChanged">
+        <ListView x:Name="prod" 
+                  ItemsSource="{Binding products}"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="5" 
+                  Grid.Row="1"
+                  Grid.RowSpan="7" 
+                  SelectionChanged="prod_SelectionChanged">
             <ListView.View>
                 <GridView>
 

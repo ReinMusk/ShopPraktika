@@ -10,14 +10,14 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -26,63 +26,176 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="10" Grid.Column="1" Grid.Row="3">
-            <StackPanel Height="213">
-                <ListView Visibility="Hidden" x:Name="CountryLv" ItemsSource="{Binding ProductCountry}" Width="150" Height="150">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Height="30" FontSize="15" Content="{Binding Country.Name}" Background="{Binding Country.Color}"></Label>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ComboBox Visibility="Hidden" Margin="2" Name="CountryCb"></ComboBox>
-                <Button Visibility="Hidden" Margin="2" x:Name="AddCountryBtn" Content="Добавить срану" Click="AddCountryBtn_Click"></Button>
-                <Button Visibility="Hidden" Margin="2" x:Name="DelCountryBtn" Content="Удалить страну"  Click="DelCountryBtn_Click"></Button>
-                <Button x:Name="CloseBtn" Click="CloseBtn_Click" Height="37" >Завершить</Button>
+        <Border Grid.Column="1" 
+                Grid.Row="3"
+                Grid.RowSpan="5"
+                BorderThickness="3"
+                BorderBrush="#AD7261"
+                Margin="0, 10, 0, 10"
+                CornerRadius="20"
+                Padding="5">
+
+            <StackPanel>
+                <Border Grid.Column="1" 
+                        Grid.Row="3"
+                        Grid.RowSpan="2"
+                        BorderThickness="3"
+                        BorderBrush="#AD7261"
+                        CornerRadius="10"
+                        Padding="0 5">
+                    <ScrollViewer Height="100"
+                                  CanContentScroll="True"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                        <ListView x:Name="CountryLv" 
+                              ItemsSource="{Binding ProductCountry}"
+                              BorderThickness="0"
+                              Background="Transparent"
+                              >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Height="30" 
+                                       FontSize="15"
+                                       Content="{Binding Country.Name}"
+                                       Foreground="White"
+                                       Background="{Binding Country.Color}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </ScrollViewer>
+                    
+                </Border>
+
+                <ComboBox Visibility="Visible"
+                      Margin="2" 
+                      Name="CountryCb"/>
+
+                <Button Visibility="Visible"
+                    Margin="2"
+                    x:Name="AddCountryBtn"
+                    Content="Добавить страну" 
+                    Click="AddCountryBtn_Click"
+                    FontSize="18"/>
+
+                <Button Visibility="Visible"
+                    Margin="2"
+                    x:Name="DelCountryBtn" 
+                    Content="Удалить страну"  
+                    Click="DelCountryBtn_Click"
+                    FontSize="18"/>
+
+                <Button x:Name="CloseBtn" 
+                        Click="CloseBtn_Click" 
+                        Content="Завершить"
+                        FontSize="18"/>
             </StackPanel>
-        </StackPanel>
+        </Border>
 
 
-        <Button x:Name="btn_back" 
-                Content="Назад" 
+        <Border BorderThickness="3"
+                BorderBrush="#AD7261"
+                CornerRadius="20"
                 Grid.Column="2" 
-                Grid.Row="7" 
-                Height="30" 
-                Width="100" 
-                VerticalAlignment="Top" 
-                HorizontalAlignment="Right" 
-                Click="btn_back_Click"/>
-        <Button x:Name="btn_save" 
-                Content="Сохранить" 
+                Grid.Row="7"
+                Margin="50, 0, 10, 20">
+            <Button x:Name="btn_back" 
+                    Content="Назад" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="15"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right" 
+                    Click="btn_back_Click"/>
+        </Border>
+        <Border BorderThickness="3"
+                BorderBrush="#AD7261"
+                CornerRadius="20"
                 Grid.Column="3" 
                 Grid.Row="7" 
-                Height="30" 
-                Width="100" 
-                VerticalAlignment="Top" 
-                HorizontalAlignment="left"
-                Click="btn_save_Click"/>
-
+                Margin="10, 0, 50, 20">
+            <Button x:Name="btn_save" 
+                    Content="Сохранить" 
+                    Height="30" 
+                    Width="100" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="left"
+                    FontSize="15"
+                    Click="btn_save_Click"/>
+        </Border>
         <TextBlock Text="Название" 
                    Grid.Column="0" 
-                   Grid.Row="0"/>
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="10"
+                   FontSize="18"/>
         
         <TextBlock Text="Описание" 
                    Grid.Column="0" 
-                   Grid.Row="1"/>
+                   Grid.Row="1"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Margin="10"
+                   FontSize="18"/>
         
-        <TextBlock Text="Ед.измерения" 
+        <TextBlock Text="Ед.изм." 
                    Grid.Column="0" 
-                   Grid.Row="2"/>
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="10"
+                   FontSize="18"/>
         
         <TextBlock Text="Страна" 
                    x:Name="CountryLabel"
                    Grid.Column="0"
-                   Grid.Row="3"/>
+                   Grid.Row="3"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"
+                   Margin="10"
+                   FontSize="18"/>
 
-        <TextBox Text="{Binding Name}" x:Name="NameTb" Grid.Column="1" Grid.Row="0"/>
-        <TextBox Text="{Binding Description}" x:Name="DescriptionTb" Grid.Column="1" Grid.Row="1"/>
+        <Border Grid.Column="1" 
+                Grid.Row="0"
+                BorderThickness="3"
+                BorderBrush="#AD7261"
+                Margin="0, 10, 0, 10"
+                CornerRadius="20">
+            <TextBox Text="{Binding Name}" 
+                 x:Name="NameTb" 
+                 Margin="10, 0, 0, 0"
+                 VerticalContentAlignment="Center"
+                 FontSize="18"
+                 Background="Transparent"
+                 BorderThickness="0"/>
+        </Border>
 
-        <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Unit}" DisplayMemberPath="Name"  x:Name="UnitCb" Width="200"/>
+        <Border BorderThickness="3"
+                BorderBrush="#AD7261"
+                CornerRadius="20"
+                Grid.Column="1" 
+                Grid.Row="1">
+            <TextBox Text="{Binding Description}" 
+                 x:Name="DescriptionTb" 
+                 Margin="10, 10, 0, 0"
+                 VerticalContentAlignment="Top"
+                 FontSize="18"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 TextWrapping="Wrap"/>
+        </Border>
+        
+        <ComboBox Grid.Row="2"
+                  Grid.Column="1"
+                  SelectedItem="{Binding Unit}"
+                  DisplayMemberPath="Name"  
+                  x:Name="UnitCb" 
+                  Width="50"
+                  Height="30"
+                  VerticalContentAlignment="Center"
+                  FontSize="16"
+                  HorizontalAlignment="Left"
+                  Margin="0 10"/>
 
         <Image x:Name="ForPhoto" 
                Source="{Binding Photo}"
@@ -91,15 +204,21 @@
                Grid.Row="1" 
                Grid.RowSpan="5" 
                Margin="15"/>
-        
-        <Button x:Name="btn_newphoto"
-                Content="Изменить фото" 
-                Grid.Column="2" 
+
+        <Border Grid.Column="2" 
                 Grid.ColumnSpan="3" 
                 Grid.Row="6" 
+                BorderThickness="3"
+                BorderBrush="#AD7261"
+                Margin="50, 10, 50, 10"
+                CornerRadius="20">
+            <Button x:Name="btn_newphoto"
+                Content="Изменить фото" 
                 HorizontalAlignment="Center" 
                 Width="200" 
-                Click="btn_newphoto_Click"/>
+                Click="btn_newphoto_Click"
+                FontSize="15"/>
+        </Border>
 
     </Grid>
 </Page>

@@ -34,13 +34,6 @@ namespace ShopPraktika
             UnitCb.DisplayMemberPath = "Name";
         }
 
-        private void prod_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var product = (sender as ListView).SelectedItem as Product;
-
-            NavigationService.Navigate(new EditPage(product));
-        }
-
         private void Del_event(object sender, RoutedEventArgs e)
         {
             var isSelProduct = prod.SelectedItem as Product;
@@ -82,15 +75,12 @@ namespace ShopPraktika
                 FilterProduct = FilterProduct.Where(c => c.UnitId == (UnitCb.SelectedItem as Unit).Id || c.UnitId == -1);
 
             if (DateMounthBtn.IsPressed)
-            {
-                var date = DateTime.Now.Month;
-                prod.ItemsSource = FilterProduct.Where(c => c.AddDate.Month == date);
-            }
-
+                prod.ItemsSource = FilterProduct.Where(x => x.AddDate.Month == DateTime.Now.Month).ToList();
+            
             if (DateCb.SelectedIndex == 1)
-                FilterProduct = FilterProduct.OrderBy(c => c.AddDate);
+                FilterProduct = FilterProduct.OrderBy(c => c.AddDate).ToList();
             else
-                FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate);
+                FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate).ToList();
 
             if (AlfCb.SelectedIndex == 1)
                 FilterProduct = FilterProduct.OrderBy(c => c.Name);

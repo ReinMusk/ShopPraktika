@@ -55,6 +55,11 @@ namespace ShopPraktika
                 MessageBox.Show("Ничего не выбрано!");
         }
 
+        private void Add_event(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EditPage(new Product()));
+        }
+
         private void EditBtnt_Click(object sender, RoutedEventArgs e)
         {
             var isSelProduct = prod.SelectedItem as Product;
@@ -79,12 +84,12 @@ namespace ShopPraktika
             
             if (DateCb.SelectedIndex == 1)
                 FilterProduct = FilterProduct.OrderBy(c => c.AddDate).ToList();
-            else
+            if (DateCb.SelectedIndex == 2)
                 FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate).ToList();
 
             if (AlfCb.SelectedIndex == 1)
                 FilterProduct = FilterProduct.OrderBy(c => c.Name);
-            else
+            if (AlfCb.SelectedIndex == 2)
                 FilterProduct = FilterProduct.OrderByDescending(c => c.Name);
 
             prod.ItemsSource = FilterProduct;
@@ -119,5 +124,7 @@ namespace ShopPraktika
         {
             Refresh();
         }
+
+        
     }
 }

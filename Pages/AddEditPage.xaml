@@ -33,9 +33,10 @@
                 BorderBrush="#AD7261"
                 Margin="0, 0, 0, 10"
                 CornerRadius="20"
-                Padding="5">
+                Padding="5"
+                x:Name="spCountry" Visibility="Hidden">
 
-            <StackPanel>
+            <StackPanel >
                 <Border Grid.Column="1" 
                         Grid.Row="3"
                         Grid.RowSpan="2"
@@ -148,6 +149,7 @@
         
         <TextBlock Text="Страна" 
                    x:Name="CountryLabel"
+                   Visibility="Hidden"
                    Grid.Column="0"
                    Grid.Row="3"
                    VerticalAlignment="Bottom"

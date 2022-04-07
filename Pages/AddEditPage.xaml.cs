@@ -30,8 +30,7 @@ namespace ShopPraktika
         {
             InitializeComponent();
 
-
-            CountryCb.ItemsSource = MainWindow.db.Country.ToList();
+            CountryCb.ItemsSource = MainWindow.db.Country.ToList().Where(x => x.IsDeleted == false);
             CountryCb.DisplayMemberPath = "Name";
 
             UnitCb.ItemsSource = MainWindow.db.Unit.ToList();
@@ -40,13 +39,8 @@ namespace ShopPraktika
             this.DataContext = product;
             if (product.Id != 0)
             {
-                AddCountryBtn.Visibility = Visibility.Visible;
-                DelCountryBtn.Visibility = Visibility.Visible;
-                AddCountryBtn.Visibility = Visibility.Visible;
-                DelCountryBtn.Visibility = Visibility.Visible;
+                spCountry.Visibility = Visibility.Visible;
                 CountryLabel.Visibility = Visibility.Visible;
-                CountryCb.Visibility = Visibility.Visible;
-                CountryLv.Visibility = Visibility.Visible;
             }
         }
 

@@ -36,9 +36,9 @@
                 CornerRadius="15"
                 Margin="20, 10"
                 Padding="10, 0, 10, 0">
-                <Button Content="Сброс" 
+                <Button Content="Добавить" 
                     FontSize="20" 
-                    Click="Reset_event" 
+                    Click="Add_event" 
                     Margin="1"/>
             </Border>
             <Border BorderBrush="#AD7261"
@@ -107,6 +107,9 @@
             <Button  x:Name="DateMounthBtn" 
                      Click="DateMounthBtn_Click"
                      Content="Дата текущего месяца"/>
+            <Button  x:Name="Reset_btn"
+                    Content="Сброс"
+                    Click="Reset_event"/>
         </StackPanel>
 
 
@@ -127,7 +130,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Id" Width="27" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Наименование"  DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Описание"  DisplayMemberBinding="{Binding Description}"/>
                     <GridViewColumn Header="Дата добавления" DisplayMemberBinding="{Binding AddDate}"/>

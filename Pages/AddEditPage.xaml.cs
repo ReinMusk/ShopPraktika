@@ -97,9 +97,18 @@ namespace ShopPraktika
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            bd_connection.connection.Product.FirstOrDefault<Product>();
-            MainWindow.db.SaveChanges();
-            NavigationService.GoBack();
+            if (product.Id != 0)
+            {
+                bd_connection.connection.Product.FirstOrDefault<Product>();
+                MainWindow.db.SaveChanges();
+                NavigationService.GoBack();
+            }
+            else
+            {
+                MainWindow.db.Product.Add(product);
+                MainWindow.db.SaveChanges();
+                NavigationService.GoBack();
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

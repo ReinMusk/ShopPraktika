@@ -16,7 +16,9 @@
         <Frame Background="#FAB7A4"/>
         <Image Source="../Resources/Images/logo.png"
                HorizontalAlignment="Left"/>
-        
+
         <Frame Grid.Row="1" x:Name="Log_frame" NavigationUIVisibility="Hidden"/>
+        <Button Content="Вперед(не знаю как ее сделать)" HorizontalAlignment="Left" Margin="819,25,0,0" VerticalAlignment="Top" Click="Up_Click"/>
+        <Button Content="(Кнопки пока для вида, надо будет их сделать)Назад" HorizontalAlignment="Left" Margin="652,9,0,0" VerticalAlignment="Top" Click="Down_Click"/>
     </Grid>
 </Window>

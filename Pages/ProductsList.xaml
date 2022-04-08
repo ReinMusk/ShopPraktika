@@ -105,8 +105,9 @@
                 <ComboBoxItem Content="от Я до А"/>
             </ComboBox>
             <Button  x:Name="DateMounthBtn" 
-                     Click="DateMounthBtn_Click"
-                     Content="Дата текущего месяца"/>
+                     Click="DateMounthBtn_Click">
+                <TextBlock Text="Дата текущего месяца" TextWrapping="Wrap" TextAlignment="Center" Width="76"/>
+            </Button>
             <Button  x:Name="Reset_btn"
                     Content="Сброс"
                     Click="Reset_event"/>

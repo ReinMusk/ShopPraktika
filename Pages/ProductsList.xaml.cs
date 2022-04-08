@@ -23,11 +23,15 @@ namespace ShopPraktika
     public partial class ProductsList : Page
     {
         User usr;
+
+        int countPages = 10;
         public ProductsList(User Newusr)
         {
             InitializeComponent();
             usr = Newusr;
-            prod.ItemsSource = MainWindow.db.Product.ToList();
+
+            prod.ItemsSource = MainWindow.db.Product.ToList().Take(countPages);
+
             var LvUnit = MainWindow.db.Unit.ToList();
             LvUnit.Insert(0, new Unit() { Id = -1, Name = "Все" });
             UnitCb.ItemsSource = LvUnit;
@@ -71,7 +75,8 @@ namespace ShopPraktika
 
         private void Refresh()
         {
-            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList();
+
+            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList().Take(countPages);
 
             if (!string.IsNullOrWhiteSpace(SearchNameDescTb.Text))
                 FilterProduct = FilterProduct.Where(c => c.Name.StartsWith(SearchNameDescTb.Text) || c.Description.StartsWith(SearchNameDescTb.Text));
@@ -91,6 +96,7 @@ namespace ShopPraktika
                 FilterProduct = FilterProduct.OrderBy(c => c.Name);
             if (AlfCb.SelectedIndex == 2)
                 FilterProduct = FilterProduct.OrderByDescending(c => c.Name);
+
 
             prod.ItemsSource = FilterProduct;
         }
@@ -122,9 +128,7 @@ namespace ShopPraktika
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            prod.ItemsSource = MainWindow.db.Product.ToList().Take(countPages);
         }
-
-        
     }
 }

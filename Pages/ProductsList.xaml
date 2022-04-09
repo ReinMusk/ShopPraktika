@@ -22,6 +22,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal"
@@ -154,5 +155,30 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="4"
+                    Grid.ColumnSpan="6"
+                    Orientation="Horizontal">
+            
+            <Button Content="Back" 
+                    HorizontalAlignment="Left"
+                    Margin="10,0" 
+                    VerticalAlignment="Center" 
+                    Click="Down_Click"/>
+            
+            <ComboBox Width="50" Margin="10" Name="SortCount" SelectionChanged="SortCount_SelectionChanged">
+                <ComboBoxItem  Selected="ComboBoxItem_Selected" Content="Все" ></ComboBoxItem>
+                <ComboBoxItem Selected="ComboBoxItem_Selected" Content="2" ></ComboBoxItem>
+                <ComboBoxItem  Selected="ComboBoxItem_Selected" Content="3"></ComboBoxItem>
+                <ComboBoxItem Selected="ComboBoxItem_Selected" Content="4"></ComboBoxItem>
+            </ComboBox>
+            
+            <Button Content="Front" 
+                    HorizontalAlignment="Left" 
+                    Margin="10,0" 
+                    VerticalAlignment="center" 
+                    Click="Up_Click"/>
+            
+
+        </StackPanel>
     </Grid>
 </Page>

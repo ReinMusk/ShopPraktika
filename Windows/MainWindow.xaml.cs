@@ -32,14 +32,6 @@ namespace ShopPraktika
             Log_frame.NavigationService.Navigate(new Page_Author());
         }
 
-        private void Up_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void Down_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

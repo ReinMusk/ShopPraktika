@@ -23,14 +23,14 @@ namespace ShopPraktika
     public partial class ProductsList : Page
     {
         User usr;
-
-        int countPages = 10;
+        int actualPage;
+        int countPages;
         public ProductsList(User Newusr)
         {
             InitializeComponent();
             usr = Newusr;
 
-            prod.ItemsSource = MainWindow.db.Product.ToList().Take(countPages);
+            prod.ItemsSource = MainWindow.db.Product.ToList();
 
             var LvUnit = MainWindow.db.Unit.ToList();
             LvUnit.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -76,7 +76,7 @@ namespace ShopPraktika
         private void Refresh()
         {
 
-            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList().Take(countPages);
+            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList();
 
             if (!string.IsNullOrWhiteSpace(SearchNameDescTb.Text))
                 FilterProduct = FilterProduct.Where(c => c.Name.StartsWith(SearchNameDescTb.Text) || c.Description.StartsWith(SearchNameDescTb.Text));
@@ -84,51 +84,97 @@ namespace ShopPraktika
             if (UnitCb.SelectedIndex > 0)
                 FilterProduct = FilterProduct.Where(c => c.UnitId == (UnitCb.SelectedItem as Unit).Id || c.UnitId == -1);
 
-            if (DateMounthBtn.IsPressed)
-                prod.ItemsSource = FilterProduct.Where(x => x.AddDate.Month == DateTime.Now.Month).ToList();
-            
+            //if (DateMounthBtn.IsPressed)
+            //{
+            //    var date = DateTime.Now.Month;
+            //    ProductList.ItemsSource = FilterProduct.Where(c => c.AddDate.Month == date);
+            //}
+
             if (DateCb.SelectedIndex == 1)
-                FilterProduct = FilterProduct.OrderBy(c => c.AddDate).ToList();
-            if (DateCb.SelectedIndex == 2)
-                FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate).ToList();
+                FilterProduct = FilterProduct.OrderBy(c => c.AddDate);
+            else if (DateCb.SelectedIndex == 2)
+                FilterProduct = FilterProduct.OrderByDescending(c => c.AddDate);
 
             if (AlfCb.SelectedIndex == 1)
                 FilterProduct = FilterProduct.OrderBy(c => c.Name);
-            if (AlfCb.SelectedIndex == 2)
+            else if (AlfCb.SelectedIndex == 2)
                 FilterProduct = FilterProduct.OrderByDescending(c => c.Name);
 
+
+            if (SortCount.SelectedIndex > 0 && FilterProduct.Count() > 0)
+            {
+                var cbb = SortCount.SelectedItem as ComboBoxItem;
+                int SelCount = Convert.ToInt32(cbb.Content);
+                FilterProduct = FilterProduct.Skip(SelCount * actualPage).Take(SelCount);
+                if (FilterProduct.Count() == 0)
+                {
+                    actualPage--;
+                    return;
+                }
+                prod.ItemsSource = FilterProduct;
+            }
 
             prod.ItemsSource = FilterProduct;
         }
 
         private void UnitCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0;
             Refresh();
         }
 
         private void SearchNameDescTb_TextChanged(object sender, TextChangedEventArgs e)
         {
+            actualPage = 0;
             Refresh();
         }
 
         private void DateMounthBtn_Click(object sender, RoutedEventArgs e)
         {
+            actualPage = 0;
             Refresh();
         }
 
         private void DateCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0;
             Refresh();
         }
 
         private void AlfCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0;
+            Refresh();
+        }
+
+        private void SortCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            actualPage = 0;
             Refresh();
         }
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
             prod.ItemsSource = MainWindow.db.Product.ToList().Take(countPages);
+        }
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            actualPage = 0;
+            Refresh();
+            countPages = Convert.ToInt32(SortCount.SelectedValue);
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+            actualPage++;
+            Refresh();
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+            actualPage--;
+            Refresh();
         }
     }
 }

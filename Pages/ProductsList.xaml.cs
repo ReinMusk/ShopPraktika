@@ -162,7 +162,6 @@ namespace ShopPraktika
         {
             actualPage = 0;
             Refresh();
-            countPages = Convert.ToInt32(SortCount.SelectedValue);
         }
 
         private void Up_Click(object sender, RoutedEventArgs e)

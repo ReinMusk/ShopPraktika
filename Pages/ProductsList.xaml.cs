@@ -24,7 +24,7 @@ namespace ShopPraktika
     {
         User usr;
         int actualPage;
-        int countPages;
+        bool mounthbtn;
         public ProductsList(User Newusr)
         {
             InitializeComponent();
@@ -84,11 +84,13 @@ namespace ShopPraktika
             if (UnitCb.SelectedIndex > 0)
                 FilterProduct = FilterProduct.Where(c => c.UnitId == (UnitCb.SelectedItem as Unit).Id || c.UnitId == -1);
 
-            //if (DateMounthBtn.IsPressed)
-            //{
-            //    var date = DateTime.Now.Month;
-            //    ProductList.ItemsSource = FilterProduct.Where(c => c.AddDate.Month == date);
-            //}
+            if (mounthbtn == true)
+            {
+                var date = DateTime.Now.Month;
+                FilterProduct = FilterProduct.Where(c => c.AddDate.Month == date);
+
+                mounthbtn = false;
+            }
 
             if (DateCb.SelectedIndex == 1)
                 FilterProduct = FilterProduct.OrderBy(c => c.AddDate);
@@ -105,6 +107,7 @@ namespace ShopPraktika
             {
                 var cbb = SortCount.SelectedItem as ComboBoxItem;
                 int SelCount = Convert.ToInt32(cbb.Content);
+
                 FilterProduct = FilterProduct.Skip(SelCount * actualPage).Take(SelCount);
                 if (FilterProduct.Count() == 0)
                 {
@@ -132,6 +135,7 @@ namespace ShopPraktika
         private void DateMounthBtn_Click(object sender, RoutedEventArgs e)
         {
             actualPage = 0;
+            mounthbtn = true;
             Refresh();
         }
 
@@ -155,7 +159,20 @@ namespace ShopPraktika
 
         private void Reset_event(object sender, RoutedEventArgs e)
         {
-            prod.ItemsSource = MainWindow.db.Product.ToList().Take(countPages);
+            var cbb = SortCount.SelectedItem as ComboBoxItem;
+
+            int res;
+
+            if (Int32.TryParse(cbb.ToString(), out res) == false)
+            {
+                prod.ItemsSource = MainWindow.db.Product.ToList();
+            }
+            else
+            {
+                int SelCount = Convert.ToInt32(cbb.Content);
+                prod.ItemsSource = MainWindow.db.Product.ToList().Take(SelCount);
+            }
+
         }
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)

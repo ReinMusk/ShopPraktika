@@ -177,7 +177,10 @@
                     Margin="10,0" 
                     VerticalAlignment="center" 
                     Click="Up_Click"/>
-            
+
+            <Label x:Name="min"/>
+            <Label x:Name="max"/>
+
 
         </StackPanel>
     </Grid>

@@ -25,6 +25,8 @@ namespace ShopPraktika
         User usr;
         int actualPage;
         bool mounthbtn;
+        int minCount;
+         
         public ProductsList(User Newusr)
         {
             InitializeComponent();
@@ -36,6 +38,9 @@ namespace ShopPraktika
             LvUnit.Insert(0, new Unit() { Id = -1, Name = "Все" });
             UnitCb.ItemsSource = LvUnit;
             UnitCb.DisplayMemberPath = "Name";
+
+            max.Content = MainWindow.db.Product.ToList().Count;
+            min.Content = max.Content;
         }
 
         private void Del_event(object sender, RoutedEventArgs e)
@@ -123,6 +128,10 @@ namespace ShopPraktika
             }
 
             prod.ItemsSource = FilterProduct;
+
+            minCount = FilterProduct.Count();
+
+            min.Content = minCount.ToString();
         }
 
         private void UnitCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -166,18 +175,19 @@ namespace ShopPraktika
         {
             var cbb = SortCount.SelectedItem as ComboBoxItem;
 
-            int res;
-
-            if (Int32.TryParse(cbb.ToString(), out res) == false)
+            if (cbb == null || cbb.Content.ToString() == "Все")
             {
                 prod.ItemsSource = MainWindow.db.Product.ToList();
+                minCount = MainWindow.db.Product.ToList().Count;
             }
             else
             {
                 int SelCount = Convert.ToInt32(cbb.Content);
                 prod.ItemsSource = MainWindow.db.Product.ToList().Take(SelCount);
+                minCount = SelCount;
             }
-
+            
+            min.Content = minCount; 
         }
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)

@@ -26,7 +26,7 @@ namespace ShopPraktika
     public partial class Page_Author : Page
     {
 
-        //int count = 1;
+        int count = 1;
         public static ObservableCollection<User> Users { get; set; }
         public Page_Author()
         {
@@ -36,34 +36,51 @@ namespace ShopPraktika
 
         private void Login_event(object sender, RoutedEventArgs e)
         {
-            MainWindow.AuthUser = MainWindow.db.User.ToList().Find(c => c.Login == txt_login.Text.Trim() 
+            if (Properties.Settings.Default.LogTime < DateTime.Now)
+            {
+                MainWindow.AuthUser = MainWindow.db.User.ToList().Find(c => c.Login == txt_login.Text.Trim()
                                                                 && c.Password == txt_password.Password.Trim());
-            
-            if (MainWindow.AuthUser == null)
-            {
-                MessageBox.Show("Пользователь не найден!");
-                return;
-            }
 
-            if (chk_button.IsChecked.GetValueOrDefault())
-            {
-                Properties.Settings.Default.Login = MainWindow.AuthUser.Login;
-                Properties.Settings.Default.Save();
+                if (MainWindow.AuthUser == null)
+                {
+                    if (count < 3)
+                    {
+                        count++;
+                        MessageBox.Show("Неверный логин или пароль");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Слишком много неверных попыток ввода: блокировка 1 минута");
+                        Properties.Settings.Default.LogTime = DateTime.Now.AddMinutes(1);
+                        Properties.Settings.Default.Save();
+                    }
+                    return;
+                }
+
+                if (chk_button.IsChecked.GetValueOrDefault())
+                {
+                    Properties.Settings.Default.Login = MainWindow.AuthUser.Login;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.Login = null;
+                    Properties.Settings.Default.Save();
+                }
+
+                switch (MainWindow.AuthUser.RoleId)
+                {
+                    case 1:
+                        NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
+                        break;
+                    case 3:
+                        NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
+                        break;
+                }
             }
             else
             {
-                Properties.Settings.Default.Login = null;
-                Properties.Settings.Default.Save();
-            }
-
-            switch (MainWindow.AuthUser.RoleId)
-            {
-                case 1:
-                    NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
-                    break;
-                case 3:
-                    NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
-                    break;
+                MessageBox.Show($"Доступ заблокирован. Повторите попытку в {Properties.Settings.Default.LogTime}");
             }
         }
 

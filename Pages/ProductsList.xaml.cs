@@ -61,7 +61,12 @@ namespace ShopPraktika
 
         private void Add_event(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new EditPage(new Product()));
+            if (usr.RoleId == 1)
+            {
+                NavigationService.Navigate(new EditPage(new Product()));
+            }
+            else
+                MessageBox.Show("Вы не админ");
         }
 
         private void EditBtnt_Click(object sender, RoutedEventArgs e)

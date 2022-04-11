@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Text.RegularExpressions;
 
 namespace ShopPraktika
 {
@@ -90,25 +91,41 @@ namespace ShopPraktika
             };
             if (openFile.ShowDialog().GetValueOrDefault())
             {
-                product.Photo = File.ReadAllBytes(openFile.FileName);
-                ForPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+                if (File.ReadAllBytes(openFile.FileName).Length > 150)
+                {
+                    MessageBox.Show("Выберите другое фото");
+                }
+                else
+                {
+                    product.Photo = File.ReadAllBytes(openFile.FileName);
+                    ForPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+                }
             }
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            if (product.Id != 0)
+            Regex regex = new Regex(@"^[А-Яа-яA-Za-z\s\-]+$");
+
+            if (regex.IsMatch(DescriptionTb.Text))
             {
-                bd_connection.connection.Product.FirstOrDefault<Product>();
-                MainWindow.db.SaveChanges();
-                NavigationService.GoBack();
+                if (product.Id != 0)
+                {
+                    bd_connection.connection.Product.FirstOrDefault<Product>();
+                    MainWindow.db.SaveChanges();
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    MainWindow.db.Product.Add(product);
+                    MainWindow.db.SaveChanges();
+                    NavigationService.GoBack();
+                }
             }
             else
-            {
-                MainWindow.db.Product.Add(product);
-                MainWindow.db.SaveChanges();
-                NavigationService.GoBack();
-            }
+                MessageBox.Show("Описание должно именть только буквы, пробел и дефис");
+
+            
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

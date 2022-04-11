@@ -187,7 +187,11 @@ namespace ShopPraktika
                 minCount = SelCount;
             }
             
-            min.Content = minCount; 
+            min.Content = minCount;
+
+            AlfCb.SelectedItem = null;
+            DateCb.SelectedItem = null;
+            UnitCb.SelectedItem = null;
         }
 
         private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)

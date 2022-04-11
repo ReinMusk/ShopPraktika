@@ -90,8 +90,15 @@ namespace ShopPraktika
             };
             if (openFile.ShowDialog().GetValueOrDefault())
             {
-                product.Photo = File.ReadAllBytes(openFile.FileName);
-                ForPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+                if (File.ReadAllBytes(openFile.FileName).Length > 150)
+                {
+                    MessageBox.Show("Выберите другое фото");
+                }
+                else
+                {
+                    product.Photo = File.ReadAllBytes(openFile.FileName);
+                    ForPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+                }
             }
         }
 

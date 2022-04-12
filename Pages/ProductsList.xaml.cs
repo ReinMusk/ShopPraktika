@@ -32,7 +32,7 @@ namespace ShopPraktika
             InitializeComponent();
             usr = Newusr;
 
-            prod.ItemsSource = MainWindow.db.Product.ToList();
+            prod.ItemsSource = MainWindow.db.Product.ToList().Where(c => c.IsDeleted != true);
 
             var LvUnit = MainWindow.db.Unit.ToList();
             LvUnit.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -51,7 +51,7 @@ namespace ShopPraktika
                 if (usr.RoleId == 1)
                 {
                     var result = MessageBox.Show("Удалить?", "", MessageBoxButton.YesNo);
-                    if (result == MessageBoxResult.OK)
+                    if (result == MessageBoxResult.Yes)
                     {
                         MainWindow.db.Product.Remove(isSelProduct);
                         MainWindow.db.SaveChanges();
@@ -85,8 +85,7 @@ namespace ShopPraktika
 
         private void Refresh()
         {
-
-            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList();
+            var FilterProduct = (IEnumerable<Product>)MainWindow.db.Product.ToList().Where(c => c.IsDeleted != true);
 
             if (!string.IsNullOrWhiteSpace(SearchNameDescTb.Text))
                 FilterProduct = FilterProduct.Where(c => c.Name.StartsWith(SearchNameDescTb.Text) || c.Description.StartsWith(SearchNameDescTb.Text));
@@ -177,13 +176,13 @@ namespace ShopPraktika
 
             if (cbb == null || cbb.Content.ToString() == "Все")
             {
-                prod.ItemsSource = MainWindow.db.Product.ToList();
+                prod.ItemsSource = MainWindow.db.Product.Where(c => c.IsDeleted != true).ToList();
                 minCount = MainWindow.db.Product.ToList().Count;
             }
             else
             {
                 int SelCount = Convert.ToInt32(cbb.Content);
-                prod.ItemsSource = MainWindow.db.Product.ToList().Take(SelCount);
+                prod.ItemsSource = MainWindow.db.Product.ToList().Where(c => c.IsDeleted != true).Take(SelCount);
                 minCount = SelCount;
             }
             

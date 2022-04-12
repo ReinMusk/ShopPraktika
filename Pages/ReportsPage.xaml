@@ -9,6 +9,26 @@
       Title="ReportsPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="prodIntake_dg" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" ItemsSource="{Binding ProductIntakes}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Data}"/>
+                <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

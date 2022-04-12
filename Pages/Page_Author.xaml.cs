@@ -25,13 +25,18 @@ namespace ShopPraktika
     /// </summary>
     public partial class Page_Author : Page
     {
-
-        int count = 1;
         public static ObservableCollection<User> Users { get; set; }
         public Page_Author()
         {
             InitializeComponent();
             txt_login.Text = Properties.Settings.Default.Login;
+
+            if (Properties.Settings.Default.LogTime < DateTime.Now && 
+                Properties.Settings.Default.LogCount >= 3)
+            {
+                Properties.Settings.Default.LogCount = 1;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void Login_event(object sender, RoutedEventArgs e)
@@ -43,9 +48,10 @@ namespace ShopPraktika
 
                 if (MainWindow.AuthUser == null)
                 {
-                    if (count < 3)
+                    if (Properties.Settings.Default.LogCount < 3)
                     {
-                        count++;
+                        Properties.Settings.Default.LogCount++;
+                        Properties.Settings.Default.Save();
                         MessageBox.Show("Неверный логин или пароль");
                     }
                     else
@@ -71,9 +77,13 @@ namespace ShopPraktika
                 switch (MainWindow.AuthUser.RoleId)
                 {
                     case 1:
+                        Properties.Settings.Default.LogCount = 1;
+                        Properties.Settings.Default.Save();
                         NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
                         break;
                     case 3:
+                        Properties.Settings.Default.LogCount = 1;
+                        Properties.Settings.Default.Save();
                         NavigationService.Navigate(new ProductsList(MainWindow.AuthUser));
                         break;
                 }

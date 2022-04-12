@@ -8,5 +8,8 @@
     <Setting Name="LogTime" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">01/01/0001 12:00:00</Value>
     </Setting>
+    <Setting Name="LogCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

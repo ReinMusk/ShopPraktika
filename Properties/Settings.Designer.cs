@@ -46,5 +46,17 @@ namespace ShopPraktika.Properties {
                 this["LogTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int LogCount {
+            get {
+                return ((int)(this["LogCount"]));
+            }
+            set {
+                this["LogCount"] = value;
+            }
+        }
     }
 }

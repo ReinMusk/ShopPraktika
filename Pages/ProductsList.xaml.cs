@@ -211,5 +211,10 @@ namespace ShopPraktika
             actualPage--;
             Refresh();
         }
+
+        private void reports_btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ReportsPage());
+        }
     }
 }

@@ -31,5 +31,10 @@ namespace ShopPraktika
 
             this.DataContext = this;
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

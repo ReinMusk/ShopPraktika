@@ -209,8 +209,14 @@
                    HorizontalAlignment="Left" 
                    VerticalAlignment="center"
                    Foreground="White"/>
-            <Border BorderBrush="#AD7261" CornerRadius="15" BorderThickness="3"> <!-- тут доделать-->
-                <Button x:Name="reports_btn" Content="Отчеты" Click="reports_btn_Click"/>
+            <Border BorderBrush="#AD7261" 
+                    CornerRadius="15"
+                    BorderThickness="3"
+                    Margin="0, 10, 0, 10"
+                    Padding="10, 0, 10, 0">
+                <Button x:Name="reports_btn" 
+                        Content="Отчеты" 
+                        Click="reports_btn_Click"/>
             </Border>
             </StackPanel>
     </Grid>

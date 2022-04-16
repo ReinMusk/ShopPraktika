@@ -99,6 +99,9 @@
     <Compile Include="Data_\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="IntakeProductsPage.xaml.cs">
+      <DependentUpon>IntakeProductsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
     <Compile Include="Data_\Worker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="IntakeProductsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ReportsPage.xaml">
+    <Page Include="Pages\IntakesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,8 +174,8 @@
     <Compile Include="Pages\ProductsList.xaml.cs">
       <DependentUpon>ProductsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ReportsPage.xaml.cs">
-      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    <Compile Include="Pages\IntakesPage.xaml.cs">
+      <DependentUpon>IntakesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

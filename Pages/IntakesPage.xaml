@@ -36,32 +36,7 @@
                         Padding="10, 0, 10, 0">
                     <Button Content="Добавить" 
                             FontSize="20"
-                            Margin="1"/>
-                </Border>
-                <Border BorderBrush="#AD7261"
-                        Grid.Column="1" 
-                        Grid.Row="0"
-                        BorderThickness="3"
-                        CornerRadius="15"
-                        Margin="0, 10, 10, 10"
-                        Padding="10, 0">
-                    <Button Content="Удалить" 
-                            FontSize="20"/>
-                </Border>
-
-                <Border BorderBrush="#AD7261"
-                        Grid.Column="1" 
-                        Grid.Row="0"
-                        BorderThickness="3"
-                        CornerRadius="15"
-                        Margin="0, 10, 0, 10"
-                        Padding="10, 0, 10, 0">
-                    <Button Content="Изменить" 
-                            Grid.Column="0" 
-                            Grid.Row="5" 
-                            Grid.ColumnSpan="2" 
-                            FontSize="20"  
-                            Margin="1"/>
+                            Margin="1" Click="Button_Click"/>
                 </Border>
                 <Border BorderBrush="#AD7261"
                         Grid.Column="1" 
@@ -89,12 +64,17 @@
                   ItemsSource="{Binding ProductIntakes}" 
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="id" 
-                                    Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Date" 
-                                    Binding="{Binding Data}"/>
-                <DataGridTextColumn Header="Supplier" 
-                                    Binding="{Binding Supplier.Name}"/>
+                <DataGridTextColumn Header="№" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}"/>
+                <DataGridTextColumn Header="Summ" Binding="{Binding TotalAmount}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Data, StringFormat=d, ConverterCulture=ru-RU}"/>
+                <DataGridTemplateColumn Header="Accepted">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Accepted}" IsEnabled="False"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

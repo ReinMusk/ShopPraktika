@@ -20,10 +20,10 @@ namespace ShopPraktika
     /// <summary>
     /// Interaction logic for ReportsPage.xaml
     /// </summary>
-    public partial class ReportsPage : Page
+    public partial class IntakesPage : Page
     {
         public List<ProductIntake> ProductIntakes { get; set; }
-        public ReportsPage()
+        public IntakesPage()
         {
             InitializeComponent();
             
@@ -37,9 +37,16 @@ namespace ShopPraktika
             NavigationService.GoBack();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new IntakeProductsPage());
+            //NavigationService.Navigate(new IntakeProductsPage());
+        }
+
+        private void prodIntake_dg_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var intake = (sender as DataGrid).SelectedItem as ProductIntake;
+
+            NavigationService.Navigate(new IntakesProductsPage(intake));
         }
     }
 }

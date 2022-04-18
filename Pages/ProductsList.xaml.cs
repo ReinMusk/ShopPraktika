@@ -213,7 +213,7 @@ namespace ShopPraktika
 
         private void reports_btn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ReportsPage());
+            NavigationService.Navigate(new IntakesPage());
         }
     }
 }

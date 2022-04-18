@@ -23,13 +23,16 @@ namespace ShopPraktika
     public partial class IntakesProductsPage : Page
     {
         public static ObservableCollection<ProductIntakeProduct> intakeProducts { get; set; }
-        public static ObservableCollection<ProductIntakeProduct> sum { get; set; }
         public IntakesProductsPage(ProductIntake intake)
         {
             InitializeComponent();
 
             intakeProducts = new ObservableCollection<ProductIntakeProduct>((MainWindow.db.ProductIntakeProduct.Where(n => n.ProductIntake.Id == intake.Id).ToList()));
-            intakeProducts.Sum(n => n. n.Count + n.PriceUnit);
+            //intakeProducts.Sum(n => n.Count + n.PriceUnit);
+    //        intakeProducts =
+    //from  in intakeProducts
+    //select *;
+
 
             cb_supplier.SelectedItem = intake.Supplier.Name;
 

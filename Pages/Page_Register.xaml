@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ShopPraktika"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="800"
       Title="Page_Register">
 
     <Grid>
@@ -19,15 +19,29 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Registration" FontSize="36" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Text="Login" FontSize="36" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
         <TextBlock Text="Password" FontSize="36" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBlock Text="ФИО" FontSize="36" Grid.Column="0" VerticalAlignment="Center" Grid.Row="3"/>
+        <TextBlock Text="Пол" FontSize="36" Grid.Column="0" VerticalAlignment="Center" Grid.Row="4"/>
+        <TextBlock Text="Телефон" FontSize="36" Grid.Column="0" VerticalAlignment="Center" Grid.Row="5"/>
+        <TextBlock Text="Email" FontSize="36" Grid.Column="0" VerticalAlignment="Center" Grid.Row="6"/>
 
+        <TextBox x:Name="tb_FIO" Grid.Column="2" Grid.Row="3"/>
+        <ComboBox Name="cb_gender" Grid.Column="2" Grid.Row="4">
+            <TextBlock Text="Мужской"/>
+            <TextBlock Text="Женский"/>
+        </ComboBox>
+        <TextBox x:Name="tb_phone" Grid.Column="2" Grid.Row="5" PreviewTextInput="tb_phone_PreviewTextInput"/>
+        <TextBox x:Name="tb_email" Grid.Column="2" Grid.Row="6"/>
         <TextBox x:Name="txt_login" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="txt_password" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalContentAlignment="Center"/>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
             <Button Content="Save" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Save_event" Margin="10" Padding="10"/>
             <Button Content="Cancel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" Click="Cancel_event" Margin="10" Padding="10"/>
         </StackPanel>

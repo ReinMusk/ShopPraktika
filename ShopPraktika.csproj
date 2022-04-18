@@ -99,6 +99,9 @@
     <Compile Include="Data_\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\IntakesProductsPage.xaml.cs">
       <DependentUpon>IntakesProductsPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
     <Compile Include="Data_\Worker.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\IntakesProductsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

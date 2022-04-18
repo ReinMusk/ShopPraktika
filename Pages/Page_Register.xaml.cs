@@ -23,6 +23,7 @@ namespace ShopPraktika
     /// </summary>
     public partial class Page_Register : Page
     {
+        int gendr;
         public static ObservableCollection<User> Users { get; set; }
         public Page_Register()
         {
@@ -32,7 +33,16 @@ namespace ShopPraktika
         private void Save_event(object sender, RoutedEventArgs e)
         {
             Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[^a-zA-Z0-9])\S{6,16}$");
-
+            
+            if (cb_gender.Text == "Мужской")
+            {
+                gendr = 1;
+            }
+            else if (cb_gender.Text == "Женский")
+            {
+                gendr = 2;
+            
+            }
             bool isPass = regex.IsMatch(txt_password.Password);
             if (isPass)
             {
@@ -44,6 +54,14 @@ namespace ShopPraktika
                         Password = txt_password.Password,
                         RoleId = 3
                     };
+                    Client b = new Client
+                    {
+                        FIO = tb_FIO.Text,
+                        Email = tb_email.Text,
+                        NumberPhone = tb_phone.Text,
+                        AddDate = DateTime.Now,
+                    };
+                    b.GenderId = gendr;
                     bd_connection.connection.User.Add(a);
                     bd_connection.connection.SaveChanges();
                     MessageBox.Show("OK");
@@ -58,12 +76,20 @@ namespace ShopPraktika
             {
                 MessageBox.Show("Придумай пароль получше");
             }
-            
+
         }
 
         private void Cancel_event(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void tb_phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

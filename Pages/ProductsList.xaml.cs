@@ -41,6 +41,11 @@ namespace ShopPraktika
 
             max.Content = MainWindow.db.Product.ToList().Count;
             min.Content = max.Content;
+
+            if (usr.RoleId != 3)
+            {
+                reports_btn.IsEnabled = true;
+            }
         }
 
         private void Del_event(object sender, RoutedEventArgs e)
@@ -53,12 +58,15 @@ namespace ShopPraktika
                     var result = MessageBox.Show("Удалить?", "", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
-                        MainWindow.db.Product.Remove(isSelProduct);
+                        isSelProduct.IsDeleted = true;
+                        MainWindow.db.Product.FirstOrDefault();
                         MainWindow.db.SaveChanges();
+                        Refresh();
                     }
                 }
                 else
                     MessageBox.Show("Вы не админ");
+               
             }
             else
                 MessageBox.Show("Ничего не выбрано!");
@@ -213,7 +221,15 @@ namespace ShopPraktika
 
         private void reports_btn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new IntakesPage());
+            if (usr.RoleId != 3)
+                NavigationService.Navigate(new IntakesPage());
+            else
+                MessageBox.Show("Недостаточно прав");
+        }
+
+        private void orders_btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrderPage());
         }
     }
 }

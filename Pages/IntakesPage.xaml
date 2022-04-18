@@ -27,7 +27,7 @@
                     Grid.ColumnSpan="4"
                     Width="510" Height="56">
                 
-                <Border BorderBrush="#AD7261"
+                <!--<Border BorderBrush="#AD7261"
                         Grid.Column="1" 
                         Grid.Row="0"
                         BorderThickness="3"
@@ -37,7 +37,7 @@
                     <Button Content="Добавить" 
                             FontSize="20"
                             Margin="1" Click="ButtonAdd_Click"/>
-                </Border>
+                </Border>-->
                 <Border BorderBrush="#AD7261"
                         Grid.Column="1" 
                         Grid.Row="0"
@@ -68,13 +68,7 @@
                 <DataGridTextColumn Header="Supplier" Binding="{Binding Supplier.Name}"/>
                 <DataGridTextColumn Header="Summ" Binding="{Binding TotalAmount}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Data, StringFormat=d, ConverterCulture=ru-RU}"/>
-                <DataGridTemplateColumn Header="Accepted">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding Accepted}" IsEnabled="False"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

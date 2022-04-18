@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -30,7 +30,7 @@
         <Button x:Name="btn_save" Content="Сохранить" Grid.Column="3" Grid.Row="0" Height="40" Width="100" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btn_add_Click"/>
 
         <TextBlock Text="Поставщик: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox Name="cb_supplier" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Name" HorizontalAlignment="Left" Width="200"/>
+        <ComboBox Name="cb_supplier" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Name" HorizontalAlignment="Left" Width="200"/>
 
         <ListView x:Name="lv_productInake" ItemsSource="{Binding intakeProducts}" Grid.Row="2" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="4">
             <ListView.View>

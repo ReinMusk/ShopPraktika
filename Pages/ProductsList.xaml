@@ -215,9 +215,19 @@
                     Margin="0, 10, 0, 10"
                     Padding="10, 0, 10, 0">
                 <Button x:Name="reports_btn" 
-                        Content="Отчеты" 
-                        Click="reports_btn_Click"/>
+                        Content="Поступления продуктов" 
+                        Click="reports_btn_Click"
+                        />
             </Border>
+            <!--<Border BorderBrush="#AD7261" 
+                    CornerRadius="15"
+                    BorderThickness="3"
+                    Margin="0, 10, 0, 10"
+                    Padding="10, 0, 10, 0">
+                <Button x:Name="orders_btn" 
+                        Content="Заказ" 
+                        Click="orders_btn_Click"/>
+            </Border>-->
             </StackPanel>
     </Grid>
 </Page>
